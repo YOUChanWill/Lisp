@@ -1,0 +1,42 @@
+(define (<name> <formal parameters>) <body>)
+
+(define (square x) (* x x))
+
+(+ (square x) (square y))	//x^2+y^2的lisp表述
+
+(define (sum-of-squares x y) (+ (square x) (square y))	//同上用于定义平方和
+
+(define (f a)
+	(sum-of-square (+ a 1) (* a 2)))	//同样可以使用上面定义的sum-of-square再次进行复用
+  
+//分情况分析（判断语句:cond、if）
+
+(define (abs x)
+	(cond ((> x 0) x)
+		  ((= x 0) 0)
+		  ((< x 0) (- x))))
+
+(cond (<p1> <e1>)
+	  (<p2> <e2>)
+	  ……
+	  (<pn> <en>))
+
+//绝对值的另一种表示
+(define (abs x)
+	(cond ((< x 0) (- x))
+		  (else x)))
+		  
+(define (abs x)
+	(if (< x 0)
+		(- x)
+		x))
+		
+//cond子句的<e>部分可以是一个表达式的序列，会顺序地求值，if语句只能为单个表达式
+
+//逻辑复合运算符
+
+(and <e1> <e2> <e3>)
+
+(or <e1> <e2> <e3>)
+
+(not <e>)	//如果<e>为False，那么not表达式的输出结果为Ture
